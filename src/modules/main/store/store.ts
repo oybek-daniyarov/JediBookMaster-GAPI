@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { baseApi } from "@/modules/core";
+import { baseApi } from ".";
 
 const isDevMode = process.env.NODE_ENV === "development";
 

@@ -5,7 +5,7 @@ import {
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query";
-import { TagEnum } from "@/modules/core";
+import { TagEnum } from "@/modules/main";
 
 export type EndpointBuilderType = EndpointBuilder<
   BaseQueryFn<
