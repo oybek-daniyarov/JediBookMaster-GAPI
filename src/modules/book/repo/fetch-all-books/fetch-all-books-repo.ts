@@ -2,7 +2,7 @@ import {
   EndpointBuilderType,
   RequestMethodEnum,
   TagEnum,
-} from "@/modules/core";
+} from "@/modules/main";
 
 export const fetchAllBooksRepo = (builder: EndpointBuilderType) =>
   builder.query<undefined, void>({
