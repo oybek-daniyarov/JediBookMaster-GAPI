@@ -5,7 +5,7 @@ const MainLayout: FC = () => {
   return (
     <div className="flex-1">
       <Suspense fallback={<div>Loading for now...</div>}>
-        <div className="container relative m-auto">
+        <div className="relative">
           <Outlet />
         </div>
       </Suspense>
