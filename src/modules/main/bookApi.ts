@@ -1,5 +1,5 @@
-import { baseApi } from "../main";
-import { fetchAllBooksRepo } from "@/modules/book/repo";
+import { baseApi } from "../core";
+import { fetchAllBooksRepo } from "@/modules/main/repo";
 
 export const bookApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

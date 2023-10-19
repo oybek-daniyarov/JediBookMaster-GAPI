@@ -1,18 +1,19 @@
-import { createBrowserRouter } from "react-router-dom";
-import { MainLayout } from "../layout";
-import { MainRouteEnum } from "@/modules/main";
-import { MainView } from "@/modules/main/view";
-import { BookRoute } from "@/modules/book/route";
+import { RouteObject } from "react-router-dom";
+import { MainRouteEnum } from "./main-route.enum.ts";
+import { lazy } from "react";
 
-export const router = createBrowserRouter([
+const MainView = lazy(() => import("./../view/main.view.tsx"));
+
+const BookRoute: Array<RouteObject> = [
   {
-    element: <MainLayout />,
+    path: MainRouteEnum.MAIN_VIEW,
+    element: <MainView />,
     children: [
       {
-        path: MainRouteEnum.HOME,
-        element: <MainView />,
+        path: MainRouteEnum.BOOK_DETAILS_VIEW,
       },
-      ...BookRoute,
     ],
   },
-]);
+];
+
+export { BookRoute };
