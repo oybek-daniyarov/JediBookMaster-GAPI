@@ -1,10 +1,6 @@
-import {
-  EndpointBuilderType,
-  RequestMethodEnum,
-  TagEnum,
-} from "@/modules/main";
+import { EndpointBuilderType, RequestMethodEnum, TagEnum } from "../../../core";
 
-export const fetchAllBooksRepo = (builder: EndpointBuilderType) =>
+const fetchAllBooksRepo = (builder: EndpointBuilderType) =>
   builder.query<undefined, void>({
     providesTags: [
       {
@@ -21,3 +17,5 @@ export const fetchAllBooksRepo = (builder: EndpointBuilderType) =>
       },
     }),
   });
+
+export { fetchAllBooksRepo };

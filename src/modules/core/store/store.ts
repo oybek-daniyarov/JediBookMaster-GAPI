@@ -4,7 +4,7 @@ import { baseApi } from ".";
 
 const isDevMode = process.env.NODE_ENV === "development";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
   },
@@ -15,5 +15,8 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+type RootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
+
+export { store };
+export type { RootState, AppDispatch };

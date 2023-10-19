@@ -5,9 +5,9 @@ import {
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query";
-import { TagEnum } from "@/modules/main";
+import { TagEnum } from "@/modules/core";
 
-export type EndpointBuilderType = EndpointBuilder<
+type EndpointBuilderType = EndpointBuilder<
   BaseQueryFn<
     string | FetchArgs,
     unknown,
@@ -19,4 +19,6 @@ export type EndpointBuilderType = EndpointBuilder<
   "api"
 >;
 
-export type RequestMethodType = "GET" | "POST" | "PUT" | "DELETE";
+type RequestMethodType = "GET" | "POST" | "PUT" | "DELETE";
+
+export type { EndpointBuilderType, RequestMethodType };
