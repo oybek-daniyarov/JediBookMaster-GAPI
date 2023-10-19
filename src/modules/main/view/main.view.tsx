@@ -1,9 +1,10 @@
 import { FC } from "react";
+import { QuickSearch } from "@/modules/main/components";
 
 const MainView: FC = () => {
   return (
     <>
-      <h1>Book Main View</h1>
+      <QuickSearch />
     </>
   );
 };

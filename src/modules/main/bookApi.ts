@@ -1,10 +1,15 @@
 import { baseApi } from "../core";
-import { fetchAllBooksRepo } from "@/modules/main/repo";
+import { fetchAllBooksRepo, fetchBookByIdRepo } from "@/modules/main/repo";
 
 export const bookApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     fetchAllBooks: fetchAllBooksRepo(builder),
+    fetchBookById: fetchBookByIdRepo(builder),
   }),
 });
 
-export const { useFetchAllBooksQuery } = bookApi;
+export const {
+  useFetchAllBooksQuery,
+  useLazyFetchAllBooksQuery,
+  useFetchBookByIdQuery,
+} = bookApi;
