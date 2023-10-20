@@ -1,15 +1,16 @@
 import { FC, Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import { QuickSearch } from "@/modules/main/components";
 
 const MainLayout: FC = () => {
   return (
-    <div className="flex-1">
-      <Suspense fallback={<div>Loading for now...</div>}>
-        <div className="relative">
-          <Outlet />
-        </div>
-      </Suspense>
-    </div>
+    <Suspense fallback={<div>Loading for now...</div>}>
+      <div className="container py-4">
+        <QuickSearch />
+      </div>
+
+      <Outlet />
+    </Suspense>
   );
 };
 
