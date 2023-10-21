@@ -36,7 +36,7 @@ const MainView: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setParam("query", value);
+    setParam("query", value.trim());
   };
 
   const handleCardClick = (id: string) => {
