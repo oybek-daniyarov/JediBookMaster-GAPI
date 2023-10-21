@@ -1,1 +1,1 @@
-export * from "./quick-search.tsx";
+export * from "./quick-search";

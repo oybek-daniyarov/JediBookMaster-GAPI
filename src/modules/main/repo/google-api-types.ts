@@ -6,14 +6,14 @@ type BookItem = {
   volumeInfo: VolumeInfo;
   saleInfo: SaleInfo;
   accessInfo: AccessInfo;
-  searchInfo?: SearchInfo; // This might be optional since it's related to the search query
-  layerInfo?: LayerInfo; // Information about the layers in the book
+  searchInfo?: SearchInfo;
+  layerInfo?: LayerInfo;
 };
 
 type VolumeInfo = {
   title: string;
   subtitle?: string;
-  authors?: string[]; // Authors can sometimes be missing
+  authors?: string[];
   publisher?: string;
   publishedDate?: string;
   description?: string;
@@ -22,8 +22,8 @@ type VolumeInfo = {
   pageCount?: number;
   printType: string;
   categories?: string[];
-  averageRating?: number; // Average rating of the book
-  ratingsCount?: number; // Number of ratings the book received
+  averageRating?: number;
+  ratingsCount?: number;
   maturityRating: string;
   allowAnonLogging: boolean;
   contentVersion: string;
@@ -67,7 +67,7 @@ type SaleInfo = {
   retailPrice?: Price;
   buyLink?: string;
   offers?: Offer[];
-  onSaleDate?: string; // Date when the book is on sale
+  onSaleDate?: string;
 };
 
 type Price = {
@@ -79,7 +79,7 @@ type Offer = {
   finskyOfferType: number;
   listPrice: MicroPrice;
   retailPrice: MicroPrice;
-  giftable?: boolean; // Whether the book can be gifted or not
+  giftable?: boolean;
 };
 
 type MicroPrice = {
@@ -119,4 +119,22 @@ type Layer = {
   layerType: string;
 };
 
-export type { BookItem };
+type Book = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  authors?: string[];
+  publisher?: string;
+  publishedDate?: string;
+  description?: string;
+  isbn?: IndustryIdentifier[];
+  images?: ImageLinks;
+  language: string;
+  previewLink: string;
+  infoLink: string;
+  saleability: string;
+  isEbook: boolean;
+  searchText?: string;
+};
+
+export type { BookItem, ImageLinks, Book };

@@ -1,1 +1,1 @@
-export * from "./sanitize-html.tsx";
+export * from "./sanitize-html";

@@ -1,2 +1,2 @@
-export * from "./request-method.enum.ts";
-export * from "./tag.enum.ts";
+export * from "./request-method.enum";
+export * from "./tag.enum";
