@@ -1,2 +1,3 @@
-export * from "./fetch-all-books/fetch-all-books.repo.ts";
-export * from "./fetch-book-by-id/fetch-book-by-id.repo.ts";
+export * from "./fetch-all-books/fetch-all-books.repo";
+export * from "./fetch-book-by-id/fetch-book-by-id.repo";
+export type { BookItem, ImageLinks } from "./google-api-types";

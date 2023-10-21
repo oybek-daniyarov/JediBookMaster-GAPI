@@ -1,5 +1,7 @@
-import { Loader2 } from "lucide-react";
+import { Image, Loader2, Search } from "lucide-react";
 
 export const Icons = {
-  spinner: Loader2,
+  Spinner: Loader2,
+  Image: Image,
+  Search: Search,
 };

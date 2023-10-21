@@ -1,3 +1,5 @@
 export * from "./useDialog";
 export * from "./useDebounce";
-export * from "./useKeyboardEvent.ts";
+export * from "./useKeyboardEvent";
+export * from "./useSearchParam";
+export * from "./usePaginate";

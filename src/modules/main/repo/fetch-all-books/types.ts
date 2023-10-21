@@ -4,8 +4,8 @@ import {
   PrintTypeEnum,
   ProjectionEnum,
   QueryKeyEnum,
-} from "./query.enum.ts";
-import { BookItem } from "../google-api-types.ts";
+} from "./query.enum";
+import { Book, BookItem } from "../google-api-types";
 
 type QueryKeyType = keyof typeof QueryKeyEnum;
 type FilterType = keyof typeof FilterEnum;
@@ -19,17 +19,22 @@ type RequestType = {
   orderBy?: OrderByType;
   filter?: FilterType;
   pagination?: {
-    startIndex?: number;
-    maxResults: number;
+    page?: number;
+    perPage: number;
   };
   projection?: ProjectionType;
   printType?: PrintTypeType;
 };
 
-type ResponseType = {
+type ContractResponseType = {
   kind: string;
   totalItems: number;
   items: BookItem[];
 };
 
-export type { RequestType, ResponseType };
+type ResponseType = {
+  items: Array<Book>;
+  total: number;
+};
+
+export type { RequestType, ContractResponseType, ResponseType };
