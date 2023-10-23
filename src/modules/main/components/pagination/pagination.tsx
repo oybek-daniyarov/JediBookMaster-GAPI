@@ -27,8 +27,7 @@ const Pagination: FC<Props> = ({ total, page, perPage, onChange }) => {
   return (
     <div className="sticky bottom-0 flex items-center justify-end space-x-2 py-2 px-4 mt-4 bg-accent rounded-md">
       <div className="flex-1 text-sm text-muted-foreground">
-        Page {page} of {total} - Displaying items {startItem} to {endItem} of{" "}
-        {total}
+        Page {page} - Displaying items {startItem} to {endItem} of {total}
       </div>
       <div className="space-x-2">
         <Button
