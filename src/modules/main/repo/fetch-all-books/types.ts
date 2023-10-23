@@ -7,7 +7,7 @@ import {
 } from "./query.enum";
 import { Book, BookItem } from "../google-api-types";
 
-type QueryKeyType = keyof typeof QueryKeyEnum;
+type QueryKeyType = `${QueryKeyEnum}`;
 type FilterType = keyof typeof FilterEnum;
 type ProjectionType = keyof typeof ProjectionEnum;
 type OrderByType = keyof typeof OrderByEnum;
@@ -16,6 +16,7 @@ type PrintTypeType = keyof typeof PrintTypeEnum;
 type RequestType = {
   query: string;
   queryKey?: QueryKeyType;
+  queryValue?: string;
   orderBy?: OrderByType;
   filter?: FilterType;
   pagination?: {
@@ -37,4 +38,4 @@ type ResponseType = {
   total: number;
 };
 
-export type { RequestType, ContractResponseType, ResponseType };
+export type { RequestType, ContractResponseType, ResponseType, QueryKeyType };
