@@ -20,9 +20,25 @@ function useSearchParam<T extends Record<string, string>>() {
     );
   };
 
+  const setParams = (params: Partial<T>, replace = false): void => {
+    setSearchParams(
+      (prev) => {
+        const newParams = new URLSearchParams(prev.toString());
+        Object.entries(params).forEach(([key, value]) => {
+          newParams.set(key, value as string);
+        });
+        return newParams;
+      },
+      {
+        replace,
+      }
+    );
+  };
+
   return {
     getParam,
     setParam,
+    setParams,
   };
 }
 
