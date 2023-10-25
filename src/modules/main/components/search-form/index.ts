@@ -1,2 +1,2 @@
 export * from "./search-form";
-export * from "./schema.ts";
+export * from "./schema";

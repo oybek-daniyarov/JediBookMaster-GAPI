@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { usePaginate } from "@/modules/core/hooks";
 
 type Props = {
@@ -25,7 +25,7 @@ const Pagination: FC<Props> = ({ total, page, perPage, onChange }) => {
   });
 
   return (
-    <div className="sticky bottom-0 flex items-center justify-end space-x-2 py-2 px-4 mt-4 bg-accent rounded-md">
+    <div className="sticky bottom-0 flex flex-col md:flex-row items-center md:justify-end gap-2 py-2 px-4 mt-4 bg-accent rounded-md">
       <div className="flex-1 text-sm text-muted-foreground">
         Page {page} - Displaying items {startItem} to {endItem} of {total}
       </div>

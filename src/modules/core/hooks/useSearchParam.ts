@@ -7,6 +7,25 @@ function useSearchParam<T extends Record<string, string>>() {
     return searchParams.get(key as string);
   };
 
+  const deleteParams = (keys: (keyof T)[]): void => {
+    setSearchParams(
+      (prev) => {
+        const newParams = new URLSearchParams(prev.toString());
+        keys.forEach((key) => {
+          newParams.delete(key as string);
+        });
+        return newParams;
+      },
+      {
+        replace: true,
+      }
+    );
+  };
+
+  const getParams = (): T => {
+    return Object.fromEntries(searchParams.entries()) as T;
+  };
+
   const setParam = (key: keyof T, value: string, replace = false): void => {
     setSearchParams(
       (prev) => {
@@ -36,9 +55,11 @@ function useSearchParam<T extends Record<string, string>>() {
   };
 
   return {
+    getParams,
     getParam,
     setParam,
     setParams,
+    deleteParams,
   };
 }
 

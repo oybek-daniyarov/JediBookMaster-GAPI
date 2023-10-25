@@ -1,56 +1,54 @@
-import { FC, useEffect } from "react";
-import { Input } from "@/components/ui/input.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { Icons } from "@/components/ui/icons.tsx";
+import { FC } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useSearchParam } from "@/modules/core/hooks";
 import { useForm } from "react-hook-form";
 import { formSchema, SearchFormType } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form.tsx";
-import { FormField } from "@/modules/main/components";
-import { FilterField } from "@/modules/main/components/filter-field";
+import { Form } from "@/components/ui/form";
+import { FormField, SearchFormFilters } from "@/modules/main/components";
+
+const defaultValues = {
+  query: "",
+  queryKey: undefined,
+  queryValue: "",
+};
 
 const SearchForm: FC = () => {
-  const { getParam, setParams } = useSearchParam<SearchFormType>();
-  const query = getParam("query");
+  const { getParams, setParams } = useSearchParam<SearchFormType>();
+
+  const params = getParams();
 
   const form = useForm<SearchFormType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      query: "",
-      queryKey: undefined,
-      queryValue: "",
+      ...defaultValues,
+      ...params,
     },
   });
 
   const handleSubmit = (values: SearchFormType) => {
-    setParams(values);
-  };
+    const filtered = Object.fromEntries(
+      Object.entries(values).filter(([_, value]) => Boolean(value))
+    );
 
-  useEffect(() => {
-    if (query) {
-      form.setValue("query", query);
-    }
-  }, [query, form]);
+    setParams({
+      ...filtered,
+      page: "0",
+    });
+  };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="flex w-full max-w-md gap-2"
+        className="flex flex-col gap-4"
       >
-        <div className="w-full flex flex-col gap-2">
-          <FormField name="query">
-            <Input placeholder="Search for books" />
-          </FormField>
-          <FilterField />
-          <FormField name="queryValue">
-            <Input placeholder="Search for books" />
-          </FormField>
-        </div>
-        <Button size="icon">
-          <Icons.Search className="h-4 w-4" />
-        </Button>
+        <FormField name="query">
+          <Input placeholder="Search for books" />
+        </FormField>
+        <SearchFormFilters />
+        <Button>Search</Button>
       </form>
     </Form>
   );

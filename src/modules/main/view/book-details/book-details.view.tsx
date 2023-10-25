@@ -28,8 +28,8 @@ const BookDetailsView = () => {
   return (
     <>
       <div className="bg-gray-50 border-b border-gray-100 py-8">
-        <div className="container m-auto grid grid-cols-3 gap-8">
-          <div className="col-span-full">
+        <div className="container m-auto md:grid md:grid-cols-3 gap-8">
+          <div className="col-span-full mb-6 md:mb-0">
             <div>
               <Button size="sm" onClick={handleBack}>
                 Back

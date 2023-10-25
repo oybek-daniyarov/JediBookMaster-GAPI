@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { QueryKeyEnum } from "@/modules/main/repo/fetch-all-books/query.enum.ts";
+import { QueryKeyEnum } from "@/modules/main/repo/fetch-all-books/query.enum";
 
 const formSchema = z
   .object({

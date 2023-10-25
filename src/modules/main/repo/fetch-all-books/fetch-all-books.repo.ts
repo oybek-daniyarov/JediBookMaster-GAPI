@@ -11,7 +11,7 @@ function fetchAllBooksRepo(builder: EndpointBuilderType) {
       result?.items
         ? result?.items.map(({ id }) => ({ type: TagEnum.BOOK, id }))
         : [],
-    query: ({
+    query({
       pagination = { page: 0, perPage: 10 },
       query,
       queryKey,
@@ -20,23 +20,25 @@ function fetchAllBooksRepo(builder: EndpointBuilderType) {
       filter,
       orderBy = "relevance",
       printType,
-    }) => ({
-      url: `/volumes`,
-      method: RequestMethodEnum.GET,
-      params: {
-        ...(queryKey && queryValue
-          ? { q: `${query}+${queryKey}:${queryValue}` }
-          : { q: query }),
-        startIndex: pagination?.page,
-        maxResults: pagination?.perPage,
-        projection,
-        filter,
-        printType,
-        sortBy: orderBy,
-        key: import.meta.env.VITE_GOOGLE_BOOKS_API_KEY,
-      },
-    }),
-    transformResponse: (response: ContractResponseType): ResponseType => {
+    }) {
+      return {
+        url: `/volumes`,
+        method: RequestMethodEnum.GET,
+        params: {
+          ...(queryKey && queryValue
+            ? { q: `${query}+${queryKey}:${queryValue}` }
+            : { q: query }),
+          startIndex: pagination?.page,
+          maxResults: pagination?.perPage,
+          projection,
+          filter,
+          printType,
+          sortBy: orderBy,
+          key: import.meta.env.VITE_GOOGLE_BOOKS_API_KEY,
+        },
+      };
+    },
+    transformResponse(response: ContractResponseType): ResponseType {
       return {
         total: response.totalItems,
         items:

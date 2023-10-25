@@ -4,9 +4,12 @@ import { useSearchParam } from "@/modules/core/hooks";
 import { useFetchAllBooksQuery } from "@/modules/main/bookApi";
 import { generatePath, useNavigate } from "react-router-dom";
 import { MainRouteEnum } from "@/modules/main/route";
-import { QueryKeyType } from "@/modules/main/repo/fetch-all-books/types.ts";
+import { QueryKeyType } from "@/modules/main/repo/fetch-all-books/types";
+import { CardListLoading } from "@/modules/main/components/card-list/card-list-loading";
+import { CardListNotFound } from "@/modules/main/components/card-list/card-list-not-found";
+import { CardListEmptyState } from "@/modules/main/components/card-list/card-list-empty-state";
 
-const PER_PAGE = 20;
+const PER_PAGE = 8;
 
 const CardList: FC = () => {
   const navigate = useNavigate();
@@ -17,7 +20,12 @@ const CardList: FC = () => {
   const queryKey = getParam("queryKey") as QueryKeyType;
   const queryValue = getParam("queryValue") as string;
 
-  const { data: books } = useFetchAllBooksQuery(
+  const {
+    data: books,
+    isLoading,
+    isFetching,
+    isUninitialized,
+  } = useFetchAllBooksQuery(
     {
       query: query as string,
       queryKey,
@@ -31,6 +39,8 @@ const CardList: FC = () => {
       skip: !query,
     }
   );
+
+  const loading = isLoading || isFetching;
 
   const handleCardClick = (id: string) => {
     navigate(
@@ -49,14 +59,25 @@ const CardList: FC = () => {
 
   return (
     <>
-      <div className="grid lg:grid-cols-4 gap-6">
-        {books?.items?.map((item) => (
-          <Card
-            book={item}
-            key={item.id}
-            onClick={() => handleCardClick(item.id)}
-          />
-        )) ?? <div>No books found</div>}
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {loading ? (
+          <CardListLoading />
+        ) : (
+          books?.items.map((item, index) => (
+            <Card
+              book={item}
+              key={`${item.id}-${index}`}
+              onClick={() => handleCardClick(item.id)}
+            />
+          ))
+        )}
+        {!books?.items.length && !isUninitialized ? (
+          <CardListNotFound className="col-span-full" />
+        ) : null}
+
+        {isUninitialized ? (
+          <CardListEmptyState className="col-span-full" />
+        ) : null}
       </div>
       {books?.total && books.total > 0 ? (
         <Pagination
